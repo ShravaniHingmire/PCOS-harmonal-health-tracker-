@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Advice Chatbot</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    
+        <div class="navbar">
+            <a href="home.html">Home</a>
+            <a href="track_symptom.html">Track Symptoms</a>
+            <a href="Menstrual Cycle.html"> Menstrual Cycle Tracker</a>
+            <a href="deit.html">Diet & Tips</a>
+            <a href="conta.html">Contact</a>
+            <a href="chat.html">chatbot</a>
+        </div>
+        <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <p class="bot">Hello! I am your Health Assistant. How can I help you today?</p>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your question..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+        
+    
+    
+    <script src="chat.js"></script>
+
+</body>
+</html>

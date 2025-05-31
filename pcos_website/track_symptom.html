@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Symptoms</title>
+    <link rel="stylesheet" href="track_symptom.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="track_symptom.html">Track Symptoms</a>
+        <a href="Menstrual Cycle.html"> Menstrual Cycle Tracker</a>
+        <a href="deit.html">Diet & Tips</a>
+        <a href="conta.html">Contact</a>
+        <a href="chat.html">chatbot</a>
+    </div>
+
+    <div class="container">
+        <div class="card" id="track">
+            <h2>Track Your Symptoms</h2>
+            <p>Log and monitor your symptoms like irregular periods, acne, hair growth, and mood swings.</p>
+            <form>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br><br>
+                
+                <label for="symptoms">Symptoms:</label>
+                <textarea id="symptoms" name="symptoms" rows="4" required></textarea><br><br>
+                
+                <label for="severity">Severity (1-10):</label>
+                <input type="number" id="severity" name="severity" min="1" max="10" required><br><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+
+</body>
+</html>

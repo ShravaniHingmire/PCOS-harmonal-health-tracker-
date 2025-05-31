@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Symptoms</title>
+    <link rel="stylesheet" href="track_symptom.css">
+    <style> body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: url('pcosback.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #f5f5f5;}</style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="track_symptom.html">Track Symptoms</a>
+        <a href="Menstrual Cycle.html"> Menstrual Cycle Tracker</a>
+        <a href="deit.html">Diet & Tips</a>
+        <a href="conta.html">Contact</a>
+        <a href="chat.html">chatbot</a>
+    </div>
+<div id="menstrual" class="interactive">
+    <h2>Menstrual Cycle Tracker</h2>
+    <label>Enter your last period start date:</label>
+    <input type="date" id="periodDate">
+    <button onclick="addPeriodDate()">Add</button>
+    <h3>Entered Dates:</h3>
+    <ul id="datesList"></ul>
+    <h3>Average Cycle Length: <span id="avgCycle">--</span> days</h3>
+    <h3>Next Expected Period: <span id="nextPeriod">--</span></h3>
+</div>
+<script>
+    let periodDates = [];
+function showSection(section) {
+    document.querySelectorAll('.interactive').forEach(div => {
+        div.classList.remove('active');
+    });
+    document.getElementById(section).classList.add('active');
+}
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
+function addPeriodDate() {
+    let input = document.getElementById("periodDate").value;
+    if (!input) {
+        alert("Please select a date!");
+        return;
+    }
+    let date = new Date(input);
+    periodDates.push(date);
+    periodDates.sort((a, b) => a - b);
+    displayDates();
+    calculateAverageCycle();
+    predictNextPeriod();
+}
+function displayDates() {
+    let list = document.getElementById("datesList");
+    list.innerHTML = "";
+    periodDates.forEach(date => {
+        let listItem = document.createElement("li");
+        listItem.textContent = date.toISOString().split("T")[0];
+        list.appendChild(listItem);
+    });
+}
+function calculateAverageCycle() {
+    if (periodDates.length < 2) {
+        document.getElementById("avgCycle").textContent = "--";
+        return;
+    }
+    let cycleLengths = [];
+    for (let i = 1; i < periodDates.length; i++) {
+        let diff = (periodDates[i] - periodDates[i - 1]) / (1000 * 60 * 60 * 24);
+        cycleLengths.push(diff);
+    }
+    let avgCycle = Math.round(cycleLengths.reduce((a, b) => a + b, 0) / cycleLengths.length);
+    document.getElementById("avgCycle").textContent = avgCycle;
+}
+function predictNextPeriod() {
+    if (periodDates.length < 2) {
+        document.getElementById("nextPeriod").textContent = "--";
+        return;
+    }
+    let avgCycle = parseInt(document.getElementById("avgCycle").textContent);
+    let lastPeriod = periodDates[periodDates.length - 1];
+    let nextPeriod = new Date(lastPeriod);
+    nextPeriod.setDate(lastPeriod.getDate() + avgCycle);
+    document.getElementById("nextPeriod").textContent = nextPeriod.toISOString().split("T")[0];
+}
+</script>
+</body>
+</html>
+
